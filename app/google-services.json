@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "786159328292",
+    "project_id": "bike-sphere360",
+    "storage_bucket": "bike-sphere360.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786159328292:android:cd0fdaf5ea15c3525d8cb1",
+        "android_client_info": {
+          "package_name": "com.deepseek.bikesphere360"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVP612G5hEcwJ-w1rn6FkvKeEUZ-wYLDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
