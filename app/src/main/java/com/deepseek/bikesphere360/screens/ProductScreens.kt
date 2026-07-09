@@ -31,16 +31,41 @@ fun CategorySelectionScreen(navController: NavController, type: String) {
     }
 
     BikeSphereScreen {
-        Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-            Text("Select $type Category", style = MaterialTheme.typography.titleLarge, color = Color.White)
-            Spacer(modifier = Modifier.height(16.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                "Select $type Category",
+                style = MaterialTheme.typography.headlineMedium,
+                color = AppYellow,
+                modifier = Modifier.padding(bottom = 32.dp)
+            )
+            
             subCategories.forEach { sub ->
-                Button(
-                    onClick = { navController.navigate(createViewProductsRoute(type, sub)) },
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = AppRed)
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                        .padding(vertical = 8.dp)
+                        .clickable { navController.navigate(createViewProductsRoute(type, sub)) },
+                    colors = CardDefaults.cardColors(containerColor = AppRed),
+                    shape = MaterialTheme.shapes.large
                 ) {
-                    Text(sub, color = Color.White)
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Text(
+                            sub,
+                            color = Color.White,
+                            style = MaterialTheme.typography.headlineSmall,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        )
+                    }
                 }
             }
         }
