@@ -230,6 +230,19 @@ class FirebaseRepository {
             }
     }
 
+    fun updateProductHotDealStatus(product: Product, isHotDeal: Boolean, onResult: (Boolean, String?) -> Unit) {
+        db.getReference("Products")
+            .child(product.type)
+            .child(product.subCategory)
+            .child(product.id)
+            .child("isHotDeal")
+            .setValue(isHotDeal)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) onResult(true, null)
+                else onResult(false, task.exception?.message)
+            }
+    }
+
     fun placeOrder(order: Order, onResult: (Boolean, String?) -> Unit) {
         val ref = db.getReference("Orders").push()
         val orderWithId = order.copy(id = ref.key ?: "")

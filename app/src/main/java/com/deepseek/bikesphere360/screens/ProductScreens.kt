@@ -201,11 +201,21 @@ fun ProductCard(product: Product, navController: NavController, userRole: String
             if (userRole == "admin") {
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Edit / Delete Row
+                // Edit / Delete / Hot Deal Row
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    TextButton(onClick = { /* Navigate to Edit */ }) {
-                        Text("Edit Product", color = AppPurple)
+                    TextButton(onClick = { 
+                        repo.updateProductHotDealStatus(product, !product.isHotDeal) { success, err ->
+                            if (success) {
+                                Toast.makeText(context, if (product.isHotDeal) "Removed from Hot Deals" else "Added to Hot Deals", Toast.LENGTH_SHORT).show()
+                                onDeleted() // Trigger refresh
+                            } else {
+                                Toast.makeText(context, "Error: $err", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }) {
+                        Text(if (product.isHotDeal) "Remove Hot Deal" else "Mark Hot Deal", color = AppGreen)
                     }
+
                     TextButton(onClick = { 
                         repo.deleteProduct(product) { success, err ->
                             if (success) {

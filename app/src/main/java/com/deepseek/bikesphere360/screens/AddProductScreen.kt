@@ -140,7 +140,7 @@ fun AddProductScreen(navController: NavController) {
                 ) {
                     Checkbox(
                         checked = isHotDeal,
-                        onCheckedChange = { isHotDeal = it },
+                        onCheckedChange = null, // Handled by parent Card click
                         colors = CheckboxDefaults.colors(checkedColor = AppGreen)
                     )
                     Text(
