@@ -26,7 +26,7 @@ fun AdminDashboardScreen(navController: NavController) {
             TabRow(
                 selectedTabIndex = selectedTab,
                 containerColor = Color.Transparent,
-                contentColor = AppYellow
+                contentColor = AppGreen
             ) {
                 Tab(selected = selectedTab == 0, onClick = { selectedTab = 0 }) {
                     Text("Users", modifier = Modifier.padding(16.dp))
@@ -105,7 +105,7 @@ fun AppointmentsList(repo: FirebaseRepository) {
 fun AdminCard(content: @Composable ColumnScope.() -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f))
+        colors = CardDefaults.cardColors(containerColor = AppBlue.copy(alpha = 0.9f))
     ) {
         Column(modifier = Modifier.padding(16.dp), content = content)
     }

@@ -169,6 +169,19 @@ class FirebaseRepository {
             })
     }
 
+    fun getCurrentUserData(onResult: (User?) -> Unit) {
+        val uid = auth.currentUser?.uid ?: return onResult(null)
+        db.getReference("Users").child(uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    onResult(snapshot.getValue(User::class.java))
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    onResult(null)
+                }
+            })
+    }
+
     fun getAllUsers(onResult: (List<User>) -> Unit) {
         db.getReference("Users").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

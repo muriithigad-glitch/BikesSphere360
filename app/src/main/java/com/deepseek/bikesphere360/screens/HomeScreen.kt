@@ -26,8 +26,10 @@ fun HomeScreen(navController: NavController) {
     var userRole by remember { mutableStateOf("user") }
     val repo = FirebaseRepository()
 
-    LaunchedEffect(Unit) {
-        repo.getCurrentUserRole { userRole = it }
+    LaunchedEffect(navController.currentBackStackEntry) {
+        repo.getCurrentUserRole { role ->
+            userRole = role
+        }
     }
 
     Scaffold(
@@ -60,12 +62,18 @@ fun HomeScreen(navController: NavController) {
 fun TabButton(text: String, isSelected: Boolean, modifier: Modifier, onClick: () -> Unit) {
     Box(
         modifier = modifier
-            .height(60.dp)
+            .height(80.dp)
             .background(if (isSelected) AppRed else Color.Gray)
             .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
-        Text(text, color = Color.White, style = MaterialTheme.typography.titleLarge)
+        Text(
+            text,
+            color = Color.White,
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 22.sp,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
     }
 }
 

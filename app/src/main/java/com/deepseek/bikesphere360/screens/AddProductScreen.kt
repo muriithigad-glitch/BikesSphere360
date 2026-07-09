@@ -4,6 +4,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -125,9 +126,30 @@ fun AddProductScreen(navController: NavController) {
                 )
             }
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Checkbox(checked = isHotDeal, onCheckedChange = { isHotDeal = it })
-                Text("Today's Hot Deal?", color = Color.White)
+            Spacer(modifier = Modifier.height(16.dp))
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { isHotDeal = !isHotDeal },
+                colors = CardDefaults.cardColors(containerColor = if (isHotDeal) AppGreen.copy(alpha = 0.2f) else Color.Transparent),
+                border = androidx.compose.foundation.BorderStroke(1.dp, if (isHotDeal) AppGreen else Color.Gray)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(12.dp)
+                ) {
+                    Checkbox(
+                        checked = isHotDeal,
+                        onCheckedChange = { isHotDeal = it },
+                        colors = CheckboxDefaults.colors(checkedColor = AppGreen)
+                    )
+                    Text(
+                        "Set as Today's Hot Deal",
+                        color = if (isHotDeal) AppGreen else Color.White,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                    )
+                }
             }
 
             if (type == "Motorbike") {

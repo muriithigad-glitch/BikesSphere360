@@ -27,6 +27,7 @@ fun AppNavHost(
         composable(ROUTE_HOME) { HomeScreen(navController) }
         composable(ROUTE_ADD_PRODUCT) { AddProductScreen(navController) }
         composable(ROUTE_SETTINGS) { SettingsScreen(navController) }
+        composable(ROUTE_PROFILE) { ProfileScreen(navController) }
         composable(ROUTE_ABOUT_US) { AboutUsScreen() }
         composable(ROUTE_CONTACT_US) { ContactUsScreen() }
         composable(ROUTE_REPORT_PROBLEM) { ReportProblemScreen() }
